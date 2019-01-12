@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name="user")
 public class User {
 
 	@Id
