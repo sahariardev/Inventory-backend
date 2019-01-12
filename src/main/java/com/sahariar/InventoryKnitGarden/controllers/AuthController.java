@@ -76,8 +76,12 @@ public class AuthController {
 	public ResponseEntity<String> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		
 		System.out.println("Hey I am here ");
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new ResponseEntity("username already exist",HttpStatus.BAD_REQUEST);
+		User u=userRepository.findUserByUsername(signUpRequest.getUsername());
+		if(u!=null)
+		{
+			if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+				return new ResponseEntity("username already exist",HttpStatus.BAD_REQUEST);
+			}
 		}
 		System.out.println("Hey I am also here ");
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
