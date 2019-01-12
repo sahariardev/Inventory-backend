@@ -23,6 +23,7 @@ public class JWTProvider {
     private int jwtExpiration;
     
     public String generateJwtToken(Authentication authentication) {
+    	System.out.println("secret key is :"+jwtSecret);
     	 
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
  

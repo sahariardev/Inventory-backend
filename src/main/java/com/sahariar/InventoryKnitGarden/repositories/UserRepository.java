@@ -8,6 +8,10 @@ import com.sahariar.InventoryKnitGarden.models.User;
 public interface UserRepository extends JpaRepository<User,Long> {
 
 	public User findUserByUsername(String name);
+
+	public boolean existsByUsername(String username);
+
+	public boolean existsByEmail(String email);
 	
 	
 }

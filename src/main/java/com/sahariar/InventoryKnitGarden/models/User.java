@@ -39,7 +39,7 @@ public class User {
 	private String email;
 	
 	@NotBlank
-	@Size(min=6,max=50)
+	@Size(min=6)
 	private String password;
 	
 	@ManyToMany(fetch=FetchType.LAZY)
@@ -48,6 +48,17 @@ public class User {
 	           inverseJoinColumns=@JoinColumn(name="role_id")
 			)
 	private Set<Role> roles=new HashSet<>();
+
+	public User(String name, String username, String email, String password) {
+		
+		this.name=name;
+		this.username=username;
+		this.email=email;
+		this.password=password;
+	}
+	public User() {
+		
+	}
 
 	public long getId() {
 		return id;

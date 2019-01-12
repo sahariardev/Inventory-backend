@@ -1,5 +1,7 @@
 package com.sahariar.InventoryKnitGarden.controllers;
 
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +14,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sahariar.InventoryKnitGarden.models.Role;
 import com.sahariar.InventoryKnitGarden.models.User;
 import com.sahariar.InventoryKnitGarden.repositories.RoleRepository;
 import com.sahariar.InventoryKnitGarden.repositories.UserRepository;
 import com.sahariar.InventoryKnitGarden.requests.LoginRequest;
+import com.sahariar.InventoryKnitGarden.requests.SignupRequest;
 import com.sahariar.InventoryKnitGarden.response.JWTResponse;
 import com.sahariar.InventoryKnitGarden.services.JWTProvider;
 
 @CrossOrigin
-@RestController("api/auth")
+@RestController()
+@RequestMapping("/api/auth")
 public class AuthController {
 
 	
@@ -43,6 +50,15 @@ public class AuthController {
 	@Autowired
 	AuthenticationManager authManager;
 	
+	@Autowired
+	PasswordEncoder encoder;
+	
+	@GetMapping("/hello")
+	public String hello()
+	{
+		return "Hello";
+	}
+	
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
  
@@ -57,15 +73,13 @@ public class AuthController {
 		return ResponseEntity.ok(new JWTResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
 	}
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+	public ResponseEntity<String> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
-					HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("username already exist",HttpStatus.BAD_REQUEST);
 		}
  
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
-					HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("email already exist ",HttpStatus.BAD_REQUEST);
 		}
  
 		// Creating user's account
@@ -74,10 +88,16 @@ public class AuthController {
  
 		
  
-		user.setRoles(roles);
+		Set<String> roles=signUpRequest.getRole();
+		for(String role :roles)
+		{
+			Role userrole=roleRepository.findByRole(role);
+			user.getRoles().add(userrole);
+		}
+		
 		userRepository.save(user);
  
-		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+		return new ResponseEntity<>("User successfully registered", HttpStatus.OK);
 	}
 	
 	
