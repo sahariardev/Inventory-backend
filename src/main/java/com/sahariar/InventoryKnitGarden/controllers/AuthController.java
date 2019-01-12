@@ -74,14 +74,16 @@ public class AuthController {
 	}
 	@PostMapping("/signup")
 	public ResponseEntity<String> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+		
+		System.out.println("Hey I am here ");
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return new ResponseEntity("username already exist",HttpStatus.BAD_REQUEST);
 		}
- 
+		System.out.println("Hey I am also here ");
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity("email already exist ",HttpStatus.BAD_REQUEST);
 		}
- 
+		System.out.println("Hey I am here again ");
 		// Creating user's account
 		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()));
