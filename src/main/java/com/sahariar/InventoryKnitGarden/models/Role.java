@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role")
+@Table(name="role", schema="dfn4sta9hp83tf")
 public class Role {
 
 	
