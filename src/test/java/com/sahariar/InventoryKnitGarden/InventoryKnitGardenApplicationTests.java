@@ -11,6 +11,7 @@ public class InventoryKnitGardenApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
 
 }
