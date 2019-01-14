@@ -6,17 +6,25 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+import org.springframework.lang.Nullable;
+
 @MappedSuperclass
 public class BaseEntity {
 
-	
+	@Nullable
 	public String code;
+	@Nullable
 	public String extra;
+	@Nullable
 	public String description;
+	@Nullable
 	public Date createdAt;
+	@Nullable
 	public Date updatedAt;
-	public User cratedBy;
-	public User updatedBy;
+	@Nullable
+	public String cratedBy;
+	@Nullable
+	public String updatedBy;
 	public String getCode() {
 		return code;
 	}
@@ -51,18 +59,26 @@ public class BaseEntity {
 		this.updatedAt = new Date();
 		
 	}
-	public User getCratedBy() {
+	public String getCratedBy() {
 		return cratedBy;
 	}
-	public void setCratedBy(User cratedBy) {
+	public void setCratedBy(String cratedBy) {
 		this.cratedBy = cratedBy;
 	}
-	public User getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
-	public void setUpdatedBy(User updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	
+    
 	
 	
 	

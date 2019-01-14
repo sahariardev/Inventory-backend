@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class InventoryItem {
+public class InventoryItem extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,38 +17,53 @@ public class InventoryItem {
 	private String others;
 	private String color_code;
 	
-	@ManyToOne
-	private Category category;
 
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+
+	public int getId() {
+		return id;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	@Override
-	protected void finalize() throws Throwable {
-		// TODO Auto-generated method stub
-		super.finalize();
+	public String getName() {
+		return name;
 	}
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public String getImage() {
+		return image;
 	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getOthers() {
+		return others;
+	}
+
+	public void setOthers(String others) {
+		this.others = others;
+	}
+
+	public String getColor_code() {
+		return color_code;
+	}
+
+	public void setColor_code(String color_code) {
+		this.color_code = color_code;
+	}
+
+
+	
+	
+
+	
 	
 	
 	
