@@ -1,4 +1,4 @@
-package com.sahariar.InventoryKnitGarden;
+package com.sahariar.InventoryKnitGarden.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
