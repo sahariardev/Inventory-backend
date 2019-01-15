@@ -14,18 +14,18 @@ public class Category extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	
 	private String name;
 	
 	@OneToMany
 	private List<InventoryItem> inventoryItems=new ArrayList<>();
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -43,6 +43,11 @@ public class Category extends BaseEntity {
 
 	public void setInventoryItems(List<InventoryItem> inventoryItems) {
 		this.inventoryItems = inventoryItems;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", inventoryItems=" + inventoryItems + "]";
 	}
 	
 	
