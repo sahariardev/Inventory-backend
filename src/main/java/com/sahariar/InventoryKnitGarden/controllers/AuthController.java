@@ -103,7 +103,7 @@ public class AuthController {
 		
 		userRepository.save(user);
  
-		return new ResponseEntity<>("User successfully registered", HttpStatus.OK);
+		return new ResponseEntity("User successfully registered", HttpStatus.OK);
 	}
 	
 	
