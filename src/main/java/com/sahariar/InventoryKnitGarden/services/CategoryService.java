@@ -93,6 +93,10 @@ public class CategoryService {
 			return false;
 		}
 	}
+	public Category getOne(Long category_id) {
+		// TODO Auto-generated method stub
+		return categoryRepository.getOne(category_id);
+	}
 	
 	
 }

@@ -50,7 +50,7 @@ public class Category extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", inventoryItems=" + inventoryItems + "]";
+		return "Category [id=" + id + ", name=" + name +"]";
 	}
 	
 	

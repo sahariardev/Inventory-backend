@@ -17,8 +17,10 @@ public class InventoryItem extends BaseEntity {
 	private String others;
 	private String color_code;
 	
-
-
+	@ManyToOne
+	private Category category;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -58,6 +60,15 @@ public class InventoryItem extends BaseEntity {
 	public void setColor_code(String color_code) {
 		this.color_code = color_code;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
 
 
 	
