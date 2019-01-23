@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Unit {
+public class Unit extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
