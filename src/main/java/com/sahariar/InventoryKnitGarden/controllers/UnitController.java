@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,7 @@ public class UnitController {
 	 @Autowired
 	 UnitService unitService;
 	
+	@PostMapping
 	public ResponseEntity<String> create(@RequestBody UnitRequest request)
 	{
 		Long id=unitService.createNewUnit(request);
@@ -35,7 +38,8 @@ public class UnitController {
 		}
 				
 		
-	}	
+	}
+	@GetMapping
 	public List<Unit> getAllUnits()
 	{
 		return unitService.getAllUnits();
