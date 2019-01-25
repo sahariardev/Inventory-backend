@@ -20,11 +20,10 @@ import com.sahariar.InventoryKnitGarden.services.LocationService;
 @RestController
 @RequestMapping("api/locations")
 public class LocationController {
+	
+	
 	@Autowired
 	LocationService locationService;
-	
-	
-	
 	@GetMapping()
 	public List<Location> getAll()
 	{		
