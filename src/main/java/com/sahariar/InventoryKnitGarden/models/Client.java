@@ -1,9 +1,12 @@
 package com.sahariar.InventoryKnitGarden.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,6 +20,8 @@ public class Client extends BaseEntity {
 	private User assigned;
 	private String contact;
 	private String email;
+	@OneToMany
+	private List<Project> projects;
 	public Long getId() {
 		return id;
 	}
