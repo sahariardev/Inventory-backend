@@ -1,5 +1,6 @@
 package com.sahariar.InventoryKnitGarden.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.sahariar.InventoryKnitGarden.models.Project;
 import com.sahariar.InventoryKnitGarden.requests.ProjectRequest;
 import com.sahariar.InventoryKnitGarden.services.ProjectService;
+import com.sahariar.InventoryKnitGarden.services.UserService;
 
 @CrossOrigin
 @RestController
@@ -29,6 +31,8 @@ public class ProjectController {
 	@Autowired
 	ProjectService projectService;
 	
+	@Autowired
+	UserService userService;	
 	
 	@PostMapping()
 	public ResponseEntity<String> createNewProject(@RequestBody ProjectRequest request)
@@ -48,6 +52,20 @@ public class ProjectController {
 	public MappingJacksonValue getProjectsByClientId(@PathVariable ("id") Long id)
 	{
 		List<Project> projects= projectService.getProjectByClientId(id);
+		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
+		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
+		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("ProjectFilter", clientFilter);
+		MappingJacksonValue mapping=new MappingJacksonValue(projects);
+		mapping.setFilters(filters);
+        return mapping;
+				
+	}
+	@GetMapping()
+	public MappingJacksonValue getProjects(Principal principal)
+	{
+		String username=principal.getName();
+		Long userId=userService.getOneUserByName(username).getId();		
+		List<Project> projects= projectService.getProjectForCurrentUser(userId);
 		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
 		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
 		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("ProjectFilter", clientFilter);

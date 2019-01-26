@@ -27,6 +27,10 @@ public class ProjectService {
 	   	return projectRepository.findByClientId(id);
 	}
 	
+	public List<Project> getProjectForCurrentUser(Long id)
+	{
+	   	return projectRepository.findByClientAssignedId(id);
+	}
 	
 	public Long createNewProject(ProjectRequest request)
 	{
