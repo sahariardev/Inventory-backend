@@ -26,7 +26,7 @@ public class ClientService {
 	}
 	public List<Client> getAllClientsByAssignedUserName(String username)
 	{
-		return clientRepository.findClientByAssignedUsername(username);
+		return clientRepository.findByAssignedUsername(username);
 	}
 	
 	

@@ -10,6 +10,6 @@ import com.sahariar.InventoryKnitGarden.models.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-	public List<Client> findClientByAssignedUsername(String username);
+	public List<Client> findByAssignedUsername(String username);
 	
 }
