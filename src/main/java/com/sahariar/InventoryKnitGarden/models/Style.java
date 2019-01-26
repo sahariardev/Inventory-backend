@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+@JsonFilter("StyleFilter")
 @Entity
 public class Style extends BaseEntity {
 
