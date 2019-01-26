@@ -50,9 +50,10 @@ public class StyleController {
 	public MappingJacksonValue gettAllStylesByProjectId(@PathVariable ("id") Long id)
 	{
 		List<Style> styles=styleService.getAllStyleByProjectId(id);
-		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("style");
-		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
-		FilterProvider filters=new SimpleFilterProvider().addFilter("ProjectFilter",styleFilter).addFilter("ClientFilter", clientFilter);
+		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("styles");
+		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
+		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();
+		FilterProvider filters=new SimpleFilterProvider().addFilter("ProjectFilter",styleFilter).addFilter("ClientFilter", clientFilter).addFilter("StyleFilter", mainFilter);
 		MappingJacksonValue mapping=new MappingJacksonValue(styles);
 		mapping.setFilters(filters);
         return mapping;
@@ -61,9 +62,11 @@ public class StyleController {
 	public MappingJacksonValue gettAllStylesAssignedToLoggedInUser(Principal principal)
 	{
 		
+		
 		Long id=userService.getOneUserByName(principal.getName()).getId();
-		List<Style> styles=styleService.getAllStyleByProjectId(id);
-		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("style");
+		System.out.println("Logged in user id is : "+id);
+		List<Style> styles=styleService.getAllStyleByLoggedInUserId(id);
+		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("styles");
 		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
 		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();
 		FilterProvider filters=new SimpleFilterProvider().addFilter("ProjectFilter",styleFilter).addFilter("ClientFilter", clientFilter).addFilter("StyleFilter", mainFilter);
