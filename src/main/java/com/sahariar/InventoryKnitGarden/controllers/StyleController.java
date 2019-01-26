@@ -17,44 +17,42 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.sahariar.InventoryKnitGarden.models.Project;
-import com.sahariar.InventoryKnitGarden.requests.ProjectRequest;
-import com.sahariar.InventoryKnitGarden.services.ProjectService;
+import com.sahariar.InventoryKnitGarden.models.Style;
+import com.sahariar.InventoryKnitGarden.requests.StyleRequest;
+import com.sahariar.InventoryKnitGarden.services.StyleService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/projects")
-public class ProjectController {
+@RequestMapping("api/styles")
+public class StyleController {
 
+	
 	@Autowired
-	ProjectService projectService;
+	StyleService styleService;
 	
 	
 	@PostMapping()
-	public ResponseEntity<String> createNewProject(@RequestBody ProjectRequest request)
+	public ResponseEntity<String> createNewStyle(@RequestBody StyleRequest request)
 	{
-		
-	  long id=projectService.createNewProject(request);
-	  
-	  if(id !=-1L)
-	  {
-		  return new ResponseEntity("cretaed", HttpStatus.CREATED);
-	  }
-	  return new ResponseEntity("Bad Request", HttpStatus.BAD_REQUEST);
-		
+		long id=styleService.createNewStyle(request);
+		if(id !=-1L)
+		  {
+			  return new ResponseEntity("cretaed", HttpStatus.CREATED);
+		  }
+		  return new ResponseEntity("Bad Request", HttpStatus.BAD_REQUEST);
 	}
-	
-	@GetMapping("/client/{id}")
-	public MappingJacksonValue getProjectsByClientId(@PathVariable ("id") Long id)
+
+	@GetMapping("/project/{id}")
+	public MappingJacksonValue gettAllStylesByProjectId(@PathVariable ("id") Long id)
 	{
-		List<Project> projects= projectService.getProjectByClientId(id);
-		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
+		List<Style> styles=styleService.getAllStyleByProjectId(id);
+		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("style");
 		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
-		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("ProjectFilter", clientFilter);
-		MappingJacksonValue mapping=new MappingJacksonValue(projects);
+		FilterProvider filters=new SimpleFilterProvider().addFilter("ProjectFilter",styleFilter).addFilter("ClientFilter", clientFilter);
+		MappingJacksonValue mapping=new MappingJacksonValue(styles);
 		mapping.setFilters(filters);
         return mapping;
-				
 	}
+	
 	
 }
