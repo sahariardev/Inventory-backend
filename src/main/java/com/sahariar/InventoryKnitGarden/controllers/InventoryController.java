@@ -45,7 +45,9 @@ public class InventoryController {
 	{
 		List<InventoryItem> items=inventroyService.getAll();
 		SimpleBeanPropertyFilter itemFilter=SimpleBeanPropertyFilter.serializeAllExcept("inventoryItems");
-		FilterProvider filters= new SimpleFilterProvider().addFilter("CategoryFilter", itemFilter);
+		SimpleBeanPropertyFilter allSerializer=SimpleBeanPropertyFilter.serializeAll();
+		
+		FilterProvider filters= new SimpleFilterProvider().addFilter("CategoryFilter", itemFilter).addFilter("ItemFilter",allSerializer);
 		MappingJacksonValue mapping=new MappingJacksonValue(items);
 		mapping.setFilters(filters);
         return mapping;
