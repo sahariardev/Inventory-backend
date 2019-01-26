@@ -27,7 +27,10 @@ public class StyleService {
 	{
 	  return styleRepository.findByProjectId(id);	
 	}
-	
+	public List<Style> getAllStyleByLoggedInUserId(Long id)
+	{
+	  return styleRepository.findByProjectClientAssignedId(id);
+	}
 	public Long createNewStyle(StyleRequest request)
 	{
 		

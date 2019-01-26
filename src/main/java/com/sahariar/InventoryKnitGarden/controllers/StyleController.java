@@ -1,5 +1,6 @@
 package com.sahariar.InventoryKnitGarden.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.sahariar.InventoryKnitGarden.models.Style;
 import com.sahariar.InventoryKnitGarden.requests.StyleRequest;
 import com.sahariar.InventoryKnitGarden.services.StyleService;
+import com.sahariar.InventoryKnitGarden.services.UserService;
 
 @CrossOrigin
 @RestController
@@ -29,6 +31,8 @@ public class StyleController {
 	
 	@Autowired
 	StyleService styleService;
+	@Autowired
+	UserService userService;
 	
 	
 	@PostMapping()
@@ -49,6 +53,20 @@ public class StyleController {
 		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("style");
 		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
 		FilterProvider filters=new SimpleFilterProvider().addFilter("ProjectFilter",styleFilter).addFilter("ClientFilter", clientFilter);
+		MappingJacksonValue mapping=new MappingJacksonValue(styles);
+		mapping.setFilters(filters);
+        return mapping;
+	}
+	@GetMapping()
+	public MappingJacksonValue gettAllStylesAssignedToLoggedInUser(Principal principal)
+	{
+		
+		Long id=userService.getOneUserByName(principal.getName()).getId();
+		List<Style> styles=styleService.getAllStyleByProjectId(id);
+		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("style");
+		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
+		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();
+		FilterProvider filters=new SimpleFilterProvider().addFilter("ProjectFilter",styleFilter).addFilter("ClientFilter", clientFilter).addFilter("StyleFilter", mainFilter);
 		MappingJacksonValue mapping=new MappingJacksonValue(styles);
 		mapping.setFilters(filters);
         return mapping;
