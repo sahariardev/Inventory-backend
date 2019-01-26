@@ -12,10 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -39,10 +40,13 @@ public class User {
 	@Email
 	private String email;
 	
+	@JsonIgnore
 	@NotBlank
 	@Size(min=6)
 	private String password;
 	
+	
+	@JsonIgnore
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="user_roles",
 	           joinColumns=@JoinColumn(name="user_id"),
