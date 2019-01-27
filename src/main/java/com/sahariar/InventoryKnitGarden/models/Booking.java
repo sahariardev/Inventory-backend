@@ -78,6 +78,11 @@ public class Booking extends BaseEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	@Override
+	public String toString() {
+		return "Booking [id=" + id + ", quantity=" + quantity + ", unit=" + unit + ", item=" + item + ", style=" + style
+				+ ", priceperunit=" + priceperunit + ", date=" + date + ", status=" + status + "]";
+	}
 	
 	
 	
