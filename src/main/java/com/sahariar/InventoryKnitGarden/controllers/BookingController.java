@@ -50,10 +50,12 @@ public class BookingController {
 	    	List<Booking> bookings=bookingService.getAllBookingByLoggedInUser(principal.getName());
 			SimpleBeanPropertyFilter bookingFilter=SimpleBeanPropertyFilter.serializeAll();
 			SimpleBeanPropertyFilter itemFilter=SimpleBeanPropertyFilter.serializeAllExcept("category");
+			SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAll();
 			SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("styles");
 			SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("projects");
 			FilterProvider filters= new SimpleFilterProvider().addFilter("ItemFilter", itemFilter).addFilter("BookingFilter", bookingFilter)
 					.addFilter("ProjectFilter",projectFilter)
+					.addFilter("StyleFilter", styleFilter)
 					.addFilter("ClientFilter", clientFilter);
 			MappingJacksonValue mapping=new MappingJacksonValue(bookings);
 			mapping.setFilters(filters);
