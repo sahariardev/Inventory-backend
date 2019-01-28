@@ -16,7 +16,7 @@ public class StageService {
 	@Autowired
 	StageRepository stageRepository;
 	
-	public Long createNewStage(@RequestBody StageRequest request)
+	public Long createNewStage(StageRequest request)
 	{
 		Stage stage=new Stage();
 		stage.setName(request.getName());
