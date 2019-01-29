@@ -6,17 +6,11 @@ import com.sahariar.InventoryKnitGarden.models.Store;
 import com.sahariar.InventoryKnitGarden.models.Unit;
 
 public class StoreRequest {
-	private Long store_id;
+	private Long stage_id;
 	private Long location_id;
 	private Long item_id;
 	private Long unit_id;
 	private double quantity;
-	public Long getStore_id() {
-		return store_id;
-	}
-	public void setStore_id(Long store_id) {
-		this.store_id = store_id;
-	}
 	public Long getLocation_id() {
 		return location_id;
 	}
@@ -40,6 +34,12 @@ public class StoreRequest {
 	}
 	public void setQuantity(double quantity) {
 		this.quantity = quantity;
+	}
+	public Long getStage_id() {
+		return stage_id;
+	}
+	public void setStage_id(Long stage_id) {
+		this.stage_id = stage_id;
 	}
 	
 	
