@@ -51,7 +51,7 @@ public class BookingController {
 	@GetMapping()
 	public MappingJacksonValue allCategories(Principal principal) {
 
-		List<Booking> bookings = bookingService.getAllBookingByLoggedInUser(principal.getName());
+		List<Booking> bookings = bookingService.getAllBookings();
 		SimpleBeanPropertyFilter bookingFilter = SimpleBeanPropertyFilter.serializeAll();
 		SimpleBeanPropertyFilter itemFilter = SimpleBeanPropertyFilter.serializeAllExcept("category");
 		SimpleBeanPropertyFilter styleFilter = SimpleBeanPropertyFilter.serializeAll();

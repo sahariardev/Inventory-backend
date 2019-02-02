@@ -68,7 +68,10 @@ public class BookingService {
 	{
 		return bookingRepository.findByCratedBy(username);
 	}
-	
+	public List<Booking> getAllBookings()
+	{
+		return bookingRepository.findAll();
+	}
 	public boolean changeStatus(Long item_id,String status,String username)
 	{
 		Booking booking=bookingRepository.getOne(item_id);
