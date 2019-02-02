@@ -90,10 +90,10 @@ public class BookingController {
 
 		for (Role r : roleList) {
 			String rolename = r.getRole();
-			if (rolename.equals("")) {
+			if (rolename.equals("general_manager")) {
 				status.add("Approved");
 				status.add("Declined");
-			} else if (rolename.equals("") && booking.getStatus().equals("Approved")) {
+			} else if (rolename.equals("store_manager") && booking.getStatus().equals("Approved")) {
 				status.add("Processing");
 				status.add("Available");
 				status.add("Pertially Available");
@@ -107,7 +107,7 @@ public class BookingController {
 	@GetMapping("/{booking_id}")
 	public MappingJacksonValue oneBooking(Principal principal, @PathVariable("booking_id") Long booking_id) {
 		Booking booking = bookingService.getOne(booking_id);
-		SimpleBeanPropertyFilter bookingFilter = SimpleBeanPropertyFilter.serializeAll();
+		SimpleBeanPropertyFilter bookingFilter = SimpleBeanPropertyFilter.serializeAllExcept("hibernateLazyInitializer","handler");
 		SimpleBeanPropertyFilter itemFilter = SimpleBeanPropertyFilter.serializeAllExcept("category");
 		SimpleBeanPropertyFilter styleFilter = SimpleBeanPropertyFilter.serializeAll();
 		SimpleBeanPropertyFilter projectFilter = SimpleBeanPropertyFilter.serializeAllExcept("styles");
