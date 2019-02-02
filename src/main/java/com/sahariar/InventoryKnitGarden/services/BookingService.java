@@ -69,4 +69,25 @@ public class BookingService {
 		return bookingRepository.findByCratedBy(username);
 	}
 	
+	public boolean changeStatus(Long item_id,String status,String username)
+	{
+		Booking booking=bookingRepository.getOne(item_id);
+		booking.setStatus(status);
+		booking.setUpdatedBy(username);
+		
+		try {
+			bookingRepository.save(booking);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	
+	public Booking getOne(Long id)
+	{
+		return bookingRepository.getOne(id);
+	}
+	
 }
