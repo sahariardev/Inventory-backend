@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.sahariar.InventoryKnitGarden.models.Store;
+import com.sahariar.InventoryKnitGarden.requests.ItemMoveRequest;
 import com.sahariar.InventoryKnitGarden.requests.StoreRequest;
 import com.sahariar.InventoryKnitGarden.services.StoreService;
 
@@ -64,6 +65,11 @@ public class StoreController {
 		mapping.setFilters(filters);
 		return mapping;
 
+	}
+	@PostMapping("/moveitem")
+	public void moveItemFromStore(@RequestBody ItemMoveRequest request)
+	{
+		
 	}
 
 }

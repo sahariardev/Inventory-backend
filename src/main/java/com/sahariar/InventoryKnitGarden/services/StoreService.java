@@ -2,6 +2,8 @@ package com.sahariar.InventoryKnitGarden.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import com.sahariar.InventoryKnitGarden.repositories.LocationRepository;
 import com.sahariar.InventoryKnitGarden.repositories.StageRepository;
 import com.sahariar.InventoryKnitGarden.repositories.StoreRepository;
 import com.sahariar.InventoryKnitGarden.repositories.UnitRepository;
+import com.sahariar.InventoryKnitGarden.requests.ItemMoveRequest;
 import com.sahariar.InventoryKnitGarden.requests.StoreRequest;
 
 @Service
@@ -77,6 +80,31 @@ public class StoreService {
 		return storeRepository.getOne(id);
 	}
 	
+	@Transactional
+	public void moveRequestHandler(ItemMoveRequest request) throws Exception
+	{
+		//first get the current store
+		//deduct quntity from that and add the new store
+		Store old=storeRepository.getOne(request.getFrom_store());
+		double newQuantity=old.getQuantity()-request.getQuntity();
+		if(newQuantity<0) throw new Exception();
+		old.setQuantity(newQuantity);
+		Stage stage=stageRepository.getOne(request.getTo_stage());
+		Unit unit =old.getUnit();
+		Location location=locationRepository.getOne(request.getTo_location());
+		InventoryItem item=itemRepository.getOne(request.getItem_id());
+		Store store=new Store();
+		store.setUnit(unit);
+		store.setStage(stage);
+		store.setLocation(location);
+		store.setItem(item);
+		store.setQuantity(request.getQuntity());
+		String info=old.getExtra()+"$QQ$From Store::"+old.getId();
+		store.setExtra(info);
+		
+		
+		
+	}
 	
 	
 	
