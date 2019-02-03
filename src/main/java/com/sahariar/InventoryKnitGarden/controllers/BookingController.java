@@ -49,7 +49,7 @@ public class BookingController {
 	}
 
 	@GetMapping()
-	public MappingJacksonValue allCategories(Principal principal) {
+	public MappingJacksonValue allBookings() {
 
 		List<Booking> bookings = bookingService.getAllBookings();
 		SimpleBeanPropertyFilter bookingFilter = SimpleBeanPropertyFilter.serializeAll();

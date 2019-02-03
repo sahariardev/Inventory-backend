@@ -72,6 +72,11 @@ public class StoreService {
 		return storeRepository.findAll();
 	}
 	
+	public Store getOne(Long id)
+	{
+		return storeRepository.getOne(id);
+	}
+	
 	
 	
 	
