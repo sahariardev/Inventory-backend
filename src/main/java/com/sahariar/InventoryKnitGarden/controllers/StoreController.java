@@ -67,8 +67,21 @@ public class StoreController {
 
 	}
 	@PostMapping("/moveitem")
-	public void moveItemFromStore(@RequestBody ItemMoveRequest request)
+	public ResponseEntity<String> moveItemFromStore(@RequestBody ItemMoveRequest request)
 	{
+		try
+		{
+			
+			boolean flag=storeService.moveRequestHandler(request);
+			if(flag) return new ResponseEntity("moved",HttpStatus.OK);
+			else return new ResponseEntity("Bad Request",HttpStatus.BAD_REQUEST);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity("Bad Request",HttpStatus.BAD_REQUEST);
+		}
+		
+		
 		
 	}
 

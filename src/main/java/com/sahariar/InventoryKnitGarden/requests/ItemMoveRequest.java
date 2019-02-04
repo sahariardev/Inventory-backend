@@ -2,18 +2,12 @@ package com.sahariar.InventoryKnitGarden.requests;
 
 public class ItemMoveRequest {
 
-	private long item_id;
 	private long from_store;
 	private long to_stage;
 	private double quntity;
 	private long to_location;
 	private String description;
-	public long getItem_id() {
-		return item_id;
-	}
-	public void setItem_id(long item_id) {
-		this.item_id = item_id;
-	}
+	
 	public long getFrom_store() {
 		return from_store;
 	}
@@ -43,7 +37,9 @@ public class ItemMoveRequest {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}	
+	}
+	
+	
 	
 	
 	

@@ -80,8 +80,8 @@ public class StoreService {
 		return storeRepository.getOne(id);
 	}
 	
-	@Transactional
-	public void moveRequestHandler(ItemMoveRequest request) throws Exception
+	
+	public boolean moveRequestHandler(ItemMoveRequest request) throws Exception
 	{
 		//first get the current store
 		//deduct quntity from that and add the new store
@@ -92,7 +92,7 @@ public class StoreService {
 		Stage stage=stageRepository.getOne(request.getTo_stage());
 		Unit unit =old.getUnit();
 		Location location=locationRepository.getOne(request.getTo_location());
-		InventoryItem item=itemRepository.getOne(request.getItem_id());
+		InventoryItem item=old.getItem();
 		Store store=new Store();
 		store.setUnit(unit);
 		store.setStage(stage);
@@ -101,11 +101,19 @@ public class StoreService {
 		store.setQuantity(request.getQuntity());
 		String info=old.getExtra()+"$QQ$From Store::"+old.getId();
 		store.setExtra(info);
+		store.setDescription(request.getDescription());
 		
+		try
+		{
+			storeRepository.save(old);
+			storeRepository.save(store);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
 		
-		
-	}
-	
-	
+	}	
 	
 }
