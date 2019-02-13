@@ -80,9 +80,13 @@ public class StoreController {
 		{
 			return new ResponseEntity("Bad Request",HttpStatus.BAD_REQUEST);
 		}
-		
-		
-		
+				
+	}
+	
+	@GetMapping("/getby/{stageName}/{locationName}/{ItemName}")
+	public List<Store> getStoresByFilters(@PathVariable ("stageName") String stageName,@PathVariable ("locationName") String locationName,@PathVariable ("ItemName") String ItemName )
+	{
+		return storeService.getStoresBy(stageName,locationName,ItemName);
 	}
 
 }

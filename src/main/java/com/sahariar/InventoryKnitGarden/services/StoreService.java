@@ -114,6 +114,23 @@ public class StoreService {
 			return false;
 		}
 		
+	}
+
+
+	public List<Store> getStoresBy(String stageName, String locationName, String itemName) {
+		// TODO Auto-generated method stub
+		
+		if(stageName.equals("all") && locationName.equals("all") && itemName.equals("all"))
+		{
+			return storeRepository.findAll();
+		}
+		else
+		{
+			//for other combination
+			
+		}
+		return storeRepository.findAll();
+		
 	}	
 	
 }
