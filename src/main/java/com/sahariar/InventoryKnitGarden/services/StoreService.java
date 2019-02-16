@@ -124,12 +124,42 @@ public class StoreService {
 		{
 			return storeRepository.findAll();
 		}
-		else
+		else if(!stageName.equals("all") && locationName.equals("all") && itemName.equals("all"))
 		{
-			//for other combination
+			return storeRepository.findStoreByStageName(stageName);	
+		}
+		else if(stageName.equals("all") && !locationName.equals("all") && itemName.equals("all"))
+		{
+			return storeRepository.findStoreByLocationName(locationName);
 			
 		}
-		return storeRepository.findAll();
+		else if(stageName.equals("all") && locationName.equals("all") && !itemName.equals("all"))
+		{
+			return storeRepository.findStoreByItemName(itemName);
+			
+		}
+		else if(!stageName.equals("all") && !locationName.equals("all") && itemName.equals("all"))
+		{
+			return storeRepository.findStoreByStageNameAndLocationName(stageName, locationName);
+		}
+		else if(!stageName.equals("all") && locationName.equals("all") && !itemName.equals("all"))
+		{
+			return storeRepository.findStoreByStageNameAndItemName(stageName, itemName);
+		}
+		else if(stageName.equals("all") && !locationName.equals("all") && !itemName.equals("all"))
+		{
+			return storeRepository.findStoreByLocationNameAndItemName(locationName, itemName);
+			
+		}
+		else if(!stageName.equals("all") && !locationName.equals("all") && !itemName.equals("all"))
+		{
+			return storeRepository.findStoreByStageNameAndLocationNameAndItemName(stageName, locationName, itemName);
+		}
+		else
+		{
+			return storeRepository.findAll();
+		}
+		
 		
 	}	
 	

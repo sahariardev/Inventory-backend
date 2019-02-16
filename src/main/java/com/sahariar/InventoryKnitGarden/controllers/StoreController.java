@@ -84,9 +84,18 @@ public class StoreController {
 	}
 	
 	@GetMapping("/getby/{stageName}/{locationName}/{ItemName}")
-	public List<Store> getStoresByFilters(@PathVariable ("stageName") String stageName,@PathVariable ("locationName") String locationName,@PathVariable ("ItemName") String ItemName )
+	public MappingJacksonValue getStoresByFilters(@PathVariable ("stageName") String stageName,@PathVariable ("locationName") String locationName,@PathVariable ("ItemName") String ItemName )
 	{
-		return storeService.getStoresBy(stageName,locationName,ItemName);
+		List<Store> stores = storeService.getStoresBy(stageName,locationName,ItemName);
+
+		SimpleBeanPropertyFilter storeFilter = SimpleBeanPropertyFilter.serializeAll();
+		SimpleBeanPropertyFilter itemFilter = SimpleBeanPropertyFilter.serializeAllExcept("category");
+		SimpleBeanPropertyFilter locationFilter = SimpleBeanPropertyFilter.serializeAll();
+		FilterProvider filters = new SimpleFilterProvider().addFilter("ItemFilter", itemFilter)
+				.addFilter("StoreFilter", storeFilter).addFilter("LocationFilter", locationFilter);
+		MappingJacksonValue mapping = new MappingJacksonValue(stores);
+		mapping.setFilters(filters);
+		return mapping;
 	}
 
 }
