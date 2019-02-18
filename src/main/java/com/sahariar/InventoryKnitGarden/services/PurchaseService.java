@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.sahariar.InventoryKnitGarden.models.InventoryItem;
 import com.sahariar.InventoryKnitGarden.models.Purchase;
+import com.sahariar.InventoryKnitGarden.models.Style;
 import com.sahariar.InventoryKnitGarden.models.Unit;
 import com.sahariar.InventoryKnitGarden.repositories.InventoryItemRepository;
 import com.sahariar.InventoryKnitGarden.repositories.PurchaseRepository;
+import com.sahariar.InventoryKnitGarden.repositories.StyleRepository;
 import com.sahariar.InventoryKnitGarden.repositories.UnitRepository;
 import com.sahariar.InventoryKnitGarden.requests.PurchaseRequest;
 
@@ -22,6 +24,9 @@ public class PurchaseService {
 	UnitRepository unitRepository;
 	@Autowired
 	InventoryItemRepository itemRepository;
+	
+	@Autowired
+	StyleRepository styleRepository; 
 	
 	public Long createNewPurchase(PurchaseRequest request)
 	{
@@ -37,6 +42,10 @@ public class PurchaseService {
 	     purchase.setSellerAddress(request.getSellerAddress());
 	     purchase.setQuantity(request.getQuantity());
 	     purchase.setReceiptNumber(request.getReceiptNumber());  
+	     purchase.setDiscount(request.getDiscount());
+	     purchase.setPrice_per_unit(request.getPrice_per_unit());
+	     Style style=styleRepository.getOne(request.getStyle_id());
+	     purchase.setStyle(style);
 	     try {
 	    	 purchaseRepository.save(purchase);
 	    	 return purchase.getId();  	 

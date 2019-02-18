@@ -17,7 +17,10 @@ public class PurchaseRequest {
 	private long unit_id;
 	private Long quantity;
 	private long item_id;
+	private double price_per_unit;
+	private double discount;
 	private String description;
+	private long style_id;
 	public String getReceiptNumber() {
 		return receiptNumber;
 	}
@@ -71,6 +74,24 @@ public class PurchaseRequest {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public double getPrice_per_unit() {
+		return price_per_unit;
+	}
+	public void setPrice_per_unit(double price_per_unit) {
+		this.price_per_unit = price_per_unit;
+	}
+	public double getDiscount() {
+		return discount;
+	}
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+	public long getStyle_id() {
+		return style_id;
+	}
+	public void setStyle_id(long style_id) {
+		this.style_id = style_id;
 	}
 	
 	

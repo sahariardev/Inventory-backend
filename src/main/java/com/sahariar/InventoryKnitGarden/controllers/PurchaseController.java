@@ -24,12 +24,8 @@ import com.sahariar.InventoryKnitGarden.services.PurchaseService;
 @RestController
 @RequestMapping("api/purchases")
 public class PurchaseController {
-
-	
 	@Autowired
 	PurchaseService purchaseService;
-	
-	
 	@PostMapping()
 	public ResponseEntity<String> createNewPurchase(@RequestBody PurchaseRequest request)
 	{
@@ -44,23 +40,22 @@ public class PurchaseController {
 			return new ResponseEntity("Bad Request",HttpStatus.BAD_REQUEST);
 		}
 	}
-	
 	@GetMapping()
 	public MappingJacksonValue getAllSotres()
 	{
 		List<Purchase> purchases=purchaseService.getAllPurchases();
 		SimpleBeanPropertyFilter purchaseFilter=SimpleBeanPropertyFilter.serializeAll();
 		SimpleBeanPropertyFilter itemFilter=SimpleBeanPropertyFilter.serializeAllExcept("category");
-		FilterProvider filters= new SimpleFilterProvider().addFilter("ItemFilter", itemFilter).addFilter("PurchaseFilter", purchaseFilter);
+		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAll();
+		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("style");
+		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.filterOutAllExcept("name");
+		FilterProvider filters= new SimpleFilterProvider().addFilter("ItemFilter", itemFilter).addFilter("PurchaseFilter", purchaseFilter)
+				.addFilter("StyleFilter", styleFilter)
+		        .addFilter("ProjectFilter",projectFilter)
+		        .addFilter("ClientFilter",clientFilter);
 		MappingJacksonValue mapping=new MappingJacksonValue(purchases);
 		mapping.setFilters(filters);
         return mapping;
 		
 	}
-	
-	
-	
-	
-	
-	
 }

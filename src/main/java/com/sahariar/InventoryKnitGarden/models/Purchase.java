@@ -25,7 +25,10 @@ public class Purchase extends BaseEntity {
 	@OneToOne
 	private Unit unit;
 	private Long quantity;
-	
+	private double price_per_unit;
+	private double discount;
+    @OneToOne
+	private Style style;		
 	@OneToOne
 	private InventoryItem item;
 	public Long getId() {
@@ -82,11 +85,23 @@ public class Purchase extends BaseEntity {
 	public void setItem(InventoryItem item) {
 		this.item = item;
 	}
-	
-	
-	
-
-	
-	
+	public double getPrice_per_unit() {
+		return price_per_unit;
+	}
+	public void setPrice_per_unit(double price_per_unit) {
+		this.price_per_unit = price_per_unit;
+	}
+	public double getDiscount() {
+		return discount;
+	}
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+	public Style getStyle() {
+		return style;
+	}
+	public void setStyle(Style style) {
+		this.style = style;
+	}
 
 }
