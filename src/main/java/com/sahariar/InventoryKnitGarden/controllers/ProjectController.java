@@ -53,8 +53,10 @@ public class ProjectController {
 	{
 		List<Project> projects= projectService.getProjectByClientId(id);
 		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
-		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
-		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("ProjectFilter", clientFilter);
+		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("projects");
+		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();
+		
+		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("clientFilter", clientFilter).addFilter("ProjectFilter", mainFilter);
 		MappingJacksonValue mapping=new MappingJacksonValue(projects);
 		mapping.setFilters(filters);
         return mapping;
@@ -67,8 +69,10 @@ public class ProjectController {
 		Long userId=userService.getOneUserByName(username).getId();		
 		List<Project> projects= projectService.getProjectForCurrentUser(userId);
 		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
-		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("client");
-		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("ProjectFilter", clientFilter);
+		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("projects");
+		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();
+		FilterProvider filters=new SimpleFilterProvider().addFilter("StyleFilter",projectFilter).addFilter("ClientFilter", clientFilter)
+				.addFilter("ProjectFilter", mainFilter);
 		MappingJacksonValue mapping=new MappingJacksonValue(projects);
 		mapping.setFilters(filters);
         return mapping;

@@ -62,10 +62,4 @@ public class Client extends BaseEntity {
 		this.email = email;
 	}
 	
-	
-	
-	
-	
-	
-	
 }
