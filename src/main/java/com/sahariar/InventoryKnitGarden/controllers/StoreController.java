@@ -83,10 +83,10 @@ public class StoreController {
 				
 	}
 	
-	@GetMapping("/getby/{stageName}/{locationName}/{ItemName}")
-	public MappingJacksonValue getStoresByFilters(@PathVariable ("stageName") String stageName,@PathVariable ("locationName") String locationName,@PathVariable ("ItemName") String ItemName )
+	@GetMapping("/getby/{stageName}/{locationName}/{ItemName}/{colorCode}")
+	public MappingJacksonValue getStoresByFilters(@PathVariable ("stageName") String stageName,@PathVariable ("locationName") String locationName,@PathVariable ("ItemName") String ItemName,@PathVariable ("colorCode") String colorCode )
 	{
-		List<Store> stores = storeService.getStoresBy(stageName,locationName,ItemName);
+		List<Store> stores = storeService.getStoresBy(stageName,locationName,ItemName,colorCode);
 
 		SimpleBeanPropertyFilter storeFilter = SimpleBeanPropertyFilter.serializeAll();
 		SimpleBeanPropertyFilter itemFilter = SimpleBeanPropertyFilter.serializeAllExcept("category");

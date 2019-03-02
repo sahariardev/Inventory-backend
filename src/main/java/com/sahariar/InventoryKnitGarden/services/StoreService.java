@@ -117,7 +117,7 @@ public class StoreService {
 	}
 
 
-	public List<Store> getStoresBy(String stageName, String locationName, String itemName) {
+	public List<Store> getStoresBy(String stageName, String locationName, String itemName,String colorCode) {
 		// TODO Auto-generated method stub
 		
 		if(stageName.equals("all") && locationName.equals("all") && itemName.equals("all"))
@@ -135,7 +135,7 @@ public class StoreService {
 		}
 		else if(stageName.equals("all") && locationName.equals("all") && !itemName.equals("all"))
 		{
-			return storeRepository.findStoreByItemName(itemName);
+			return storeRepository.findStoreByItemNameAndItemColorCode(itemName,colorCode);
 			
 		}
 		else if(!stageName.equals("all") && !locationName.equals("all") && itemName.equals("all"))
