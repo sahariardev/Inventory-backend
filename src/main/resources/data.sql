@@ -1,5 +1,5 @@
 Insert Into role values(1,'admin')
 Insert Into role values(2,'store_manager')
-Insert Into role values(3,'merchandiger')
+Insert Into role values(3,'merchandiser')
 Insert Into role values(4,'managing_director')
-Insert Into role values(4,'general_manager')
+Insert Into role values(5,'general_manager')
