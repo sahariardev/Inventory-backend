@@ -69,7 +69,7 @@ public class UserController {
 	    		auth.setBuyer(true);
 	    		auth.setPurchase(true);
 	    		auth.setStyle(true);
-	    		auth.setUnit(true);
+
 	    	}
 	    	else if (role.getRole().equals("managing_director"))
 	    	{
@@ -90,7 +90,7 @@ public class UserController {
 	    		auth.setProject(true);
 	    		auth.setPurchase(true);
 	    		auth.setStyle(true);
-	    		auth.setUnit(true);
+
 	    	}
 	    	
 	    }

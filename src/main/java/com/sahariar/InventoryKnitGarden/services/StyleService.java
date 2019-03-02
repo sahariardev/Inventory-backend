@@ -31,13 +31,14 @@ public class StyleService {
 	{
 	  return styleRepository.findByProjectClientAssignedId(id);
 	}
+	public List<Style> getAll()
+	{
+	  return styleRepository.findAll();
+	}
 	public Long createNewStyle(StyleRequest request)
 	{
-		
 		Project project=projectRepository.getOne(request.getProject_id());
-		
 		Style style=new Style();
-		
 		style.setName(request.getName());
 		style.setDescription(request.getDescription());
 		style.setProject(project);

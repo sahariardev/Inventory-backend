@@ -2,6 +2,7 @@ package com.sahariar.InventoryKnitGarden.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.sahariar.InventoryKnitGarden.models.Client;
 import com.sahariar.InventoryKnitGarden.models.Project;
+import com.sahariar.InventoryKnitGarden.models.Role;
+import com.sahariar.InventoryKnitGarden.models.User;
 import com.sahariar.InventoryKnitGarden.requests.ProjectRequest;
 import com.sahariar.InventoryKnitGarden.services.ProjectService;
 import com.sahariar.InventoryKnitGarden.services.UserService;
@@ -67,7 +71,25 @@ public class ProjectController {
 	{
 		String username=principal.getName();
 		Long userId=userService.getOneUserByName(username).getId();		
-		List<Project> projects= projectService.getProjectForCurrentUser(userId);
+		User user=userService.getOneUserByName(username);
+		boolean isGmOrMd=false;
+		Set<Role> roles=user.getRoles();
+		for(Role role:roles)
+		{
+			if(role.getRole().equals("managing_director") || role.getRole().equals("general_manager"))
+			{
+				isGmOrMd=true;
+			}
+		}		
+		List<Project> projects= null;
+		if(isGmOrMd)
+		{
+			projects=projectService.getAll();
+		}
+		else
+		{
+			projects= projectService.getProjectForCurrentUser(userId);
+		}
 		SimpleBeanPropertyFilter projectFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
 		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("projects");
 		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();

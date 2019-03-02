@@ -2,6 +2,7 @@ package com.sahariar.InventoryKnitGarden.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.sahariar.InventoryKnitGarden.models.Project;
+import com.sahariar.InventoryKnitGarden.models.Role;
 import com.sahariar.InventoryKnitGarden.models.Style;
+import com.sahariar.InventoryKnitGarden.models.User;
 import com.sahariar.InventoryKnitGarden.requests.StyleRequest;
 import com.sahariar.InventoryKnitGarden.services.StyleService;
 import com.sahariar.InventoryKnitGarden.services.UserService;
@@ -65,7 +69,28 @@ public class StyleController {
 		
 		Long id=userService.getOneUserByName(principal.getName()).getId();
 		System.out.println("Logged in user id is : "+id);
-		List<Style> styles=styleService.getAllStyleByLoggedInUserId(id);
+		
+		User user=userService.getOneUserByName(principal.getName());
+		boolean isGmOrMd=false;
+		Set<Role> roles=user.getRoles();
+		List<Style> styles=null;
+		for(Role role:roles)
+		{
+			if(role.getRole().equals("managing_director") || role.getRole().equals("general_manager"))
+			{
+				isGmOrMd=true;
+			}
+		}		
+		List<Project> projects= null;
+		if(isGmOrMd)
+		{
+			styles=styleService.getAll();
+		}
+		else
+		{
+			styles=styleService.getAllStyleByLoggedInUserId(id);
+		}
+		
 		SimpleBeanPropertyFilter styleFilter=SimpleBeanPropertyFilter.serializeAllExcept("styles");
 		SimpleBeanPropertyFilter clientFilter=SimpleBeanPropertyFilter.serializeAllExcept("project");
 		SimpleBeanPropertyFilter mainFilter=SimpleBeanPropertyFilter.serializeAll();

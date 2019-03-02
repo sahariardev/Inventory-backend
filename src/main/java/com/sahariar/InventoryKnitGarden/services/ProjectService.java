@@ -31,6 +31,10 @@ public class ProjectService {
 	{
 	   	return projectRepository.findByClientAssignedId(id);
 	}
+	public List<Project> getAll()
+	{
+	   	return projectRepository.findAll();
+	}
 	
 	public Long createNewProject(ProjectRequest request)
 	{
