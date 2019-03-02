@@ -76,7 +76,7 @@ public class StyleController {
 		List<Style> styles=null;
 		for(Role role:roles)
 		{
-			if(role.getRole().equals("managing_director") || role.getRole().equals("general_manager"))
+			if(role.getRole().equals("managing_director") || role.getRole().equals("general_manager") ||  role.getRole().equals("store_manager"))
 			{
 				isGmOrMd=true;
 			}
