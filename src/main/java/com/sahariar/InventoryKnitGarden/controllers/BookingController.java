@@ -90,10 +90,10 @@ public class BookingController {
 
 		for (Role r : roleList) {
 			String rolename = r.getRole();
-			if (rolename.equals("general_manager") && !(booking.getStatus().equals("Processing")||(booking.getStatus().equals("In-housed")||booking.getStatus().equals("Pertially in housed"))) {
+			if (rolename.equals("general_manager") && !(booking.getStatus().equals("Processing")||(booking.getStatus().equals("In-housed")||booking.getStatus().equals("Pertially in housed")))) {
 				status.add("Approved");
 				status.add("Declined");
-			} else if (rolename.equals("store_manager") && (booking.getStatus().equals("Approved")||booking.getStatus().equals("Processing")||(booking.getStatus().equals("In-housed")||booking.getStatus().equals("Pertially in housed"))) {
+			} else if (rolename.equals("store_manager") && (booking.getStatus().equals("Approved")||booking.getStatus().equals("Processing")||(booking.getStatus().equals("In-housed")||booking.getStatus().equals("Pertially in housed")))) {
 				status.add("Processing");
 				status.add("In-housed");
 				status.add("Pertially in-housed");
