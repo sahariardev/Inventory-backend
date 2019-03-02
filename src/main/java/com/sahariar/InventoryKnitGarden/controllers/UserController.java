@@ -66,6 +66,7 @@ public class UserController {
 	    		auth.setInventory(true);
 	    		auth.setInventoryItems(true);
 	    		auth.setProject(true);
+	    		auth.setBuyer(true);
 	    		auth.setPurchase(true);
 	    		auth.setStyle(true);
 	    		auth.setUnit(true);
@@ -73,6 +74,7 @@ public class UserController {
 	    	else if (role.getRole().equals("managing_director"))
 	    	{
 	    		auth.setBooking(true);
+	    		auth.setBuyer(true);
 	    		auth.setInventory(true);
 	    		auth.setProject(true);
 	    		auth.setPurchase(true);
