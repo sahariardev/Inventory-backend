@@ -144,16 +144,16 @@ public class StoreService {
 		}
 		else if(!stageName.equals("all") && locationName.equals("all") && !itemName.equals("all"))
 		{
-			return storeRepository.findStoreByStageNameAndItemName(stageName, itemName);
+			return storeRepository.findStoreByStageNameAndItemNameAndItemColorCode(stageName, itemName,colorCode);
 		}
 		else if(stageName.equals("all") && !locationName.equals("all") && !itemName.equals("all"))
 		{
-			return storeRepository.findStoreByLocationNameAndItemName(locationName, itemName);
+			return storeRepository.findStoreByLocationNameAndItemNameAndItemColorCode(locationName, itemName,colorCode);
 			
 		}
 		else if(!stageName.equals("all") && !locationName.equals("all") && !itemName.equals("all"))
 		{
-			return storeRepository.findStoreByStageNameAndLocationNameAndItemName(stageName, locationName, itemName);
+			return storeRepository.findStoreByStageNameAndLocationNameAndItemNameAndItemColorCode(stageName, locationName, itemName,colorCode);
 		}
 		else
 		{
