@@ -15,6 +15,7 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
 	public List<Store> findStoreByStageName(String stageName);
 	public List<Store> findStoreByLocationName(String locationName);
 	
+	
 	public List<Store> findStoreByItemNameAndItemColorCode(String itemName,String color_code);
 	public List<Store> findStoreByItemName(String itemName);
 	
@@ -25,6 +26,9 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
 	
 	public List<Store>findStoreByStageNameAndItemName(String stageName, String itemName);
 	public List<Store>findStoreByStageNameAndItemNameAndItemColorCode(String stageName, String itemName,String colorCode);
+	
+
+	
 	
 	
 	

@@ -9,5 +9,7 @@ import com.sahariar.InventoryKnitGarden.models.Booking;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 	
 	public List<Booking> findByCratedBy(String username);
+	
+	public List<Booking> findByStyleId(Long styleId);
 
 }

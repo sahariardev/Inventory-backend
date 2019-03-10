@@ -65,6 +65,23 @@ public class BookingController {
 		return mapping;
 
 	}
+	@GetMapping("{styleID}")
+	public MappingJacksonValue allBookingsByStyle(@PathVariable("styleID") Long styleId) {
+
+		List<Booking> bookings = bookingService.getAllBookingsByStyle(styleId);
+		SimpleBeanPropertyFilter bookingFilter = SimpleBeanPropertyFilter.serializeAll();
+		SimpleBeanPropertyFilter itemFilter = SimpleBeanPropertyFilter.serializeAllExcept("category");
+		SimpleBeanPropertyFilter styleFilter = SimpleBeanPropertyFilter.serializeAll();
+		SimpleBeanPropertyFilter projectFilter = SimpleBeanPropertyFilter.serializeAllExcept("styles");
+		SimpleBeanPropertyFilter clientFilter = SimpleBeanPropertyFilter.serializeAllExcept("projects");
+		FilterProvider filters = new SimpleFilterProvider().addFilter("ItemFilter", itemFilter)
+				.addFilter("BookingFilter", bookingFilter).addFilter("ProjectFilter", projectFilter)
+				.addFilter("StyleFilter", styleFilter).addFilter("ClientFilter", clientFilter);
+		MappingJacksonValue mapping = new MappingJacksonValue(bookings);
+		mapping.setFilters(filters);
+		return mapping;
+
+	}
 
 	@GetMapping("/{booking_id}/changestatus/{status}")
 	public ResponseEntity<String> changeBookingStatus(Principal principal, @PathVariable("booking_id") Long booking_id,

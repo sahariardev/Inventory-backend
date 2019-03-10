@@ -72,6 +72,11 @@ public class BookingService {
 	{
 		return bookingRepository.findAll();
 	}
+	public List<Booking> getAllBookingsByStyle(Long styleId)
+	{
+		return bookingRepository.findByStyleId(styleId);
+	}
+	
 	public boolean changeStatus(Long item_id,String status,String username)
 	{
 		Booking booking=bookingRepository.getOne(item_id);
