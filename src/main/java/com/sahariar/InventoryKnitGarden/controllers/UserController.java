@@ -41,6 +41,7 @@ public class UserController {
 	    {
 	    	if(role.getRole().equals("admin"))
 	    	{
+	    		auth.setSummary(true);
 	    		auth.setBooking(true);
 	    		auth.setBuyer(true);
 	    		auth.setCategory(true);
@@ -55,6 +56,7 @@ public class UserController {
 	    	}
 	    	else if(role.getRole().equals("store_manager"))
 	    	{
+	    		auth.setSummary(true);
 	    		auth.setBooking(true);
 	    		auth.setInventory(true);
 	    		auth.setPurchase(true);
@@ -62,6 +64,7 @@ public class UserController {
 	    	}
 	    	else if (role.getRole().equals("merchandiser"))
 	    	{
+	    		auth.setSummary(true);
 	    		auth.setBooking(true);
 	    		auth.setInventory(true);
 	    		auth.setInventoryItems(true);
@@ -72,6 +75,7 @@ public class UserController {
 	    	}
 	    	else if (role.getRole().equals("managing_director"))
 	    	{
+	    		auth.setSummary(true);
 	    		auth.setBooking(true);
 	    		auth.setBuyer(true);
 	    		auth.setInventory(true);
@@ -82,6 +86,7 @@ public class UserController {
 	    	}
 	    	else if (role.getRole().equals("general_manager"))
 	    	{
+	    		auth.setSummary(true);
 	    		auth.setBooking(true);
 	    		auth.setBuyer(true);
 	    		auth.setInventory(true);

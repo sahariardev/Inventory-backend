@@ -13,6 +13,7 @@ public class MenuItemAuthorizations {
 	public boolean inventory=false;
 	public boolean booking=false;
 	public boolean purchase=false;
+	public boolean summary=false;
 	public boolean isInventoryItems() {
 		return InventoryItems;
 	}
@@ -79,11 +80,19 @@ public class MenuItemAuthorizations {
 	public void setPurchase(boolean purchase) {
 		this.purchase = purchase;
 	}
+	
+	public boolean isSummary() {
+		return summary;
+	}
+	public void setSummary(boolean summary) {
+		this.summary = summary;
+	}
 	@Override
 	public String toString() {
-		return "MenuItem [InventoryItems=" + InventoryItems + ", buyer=" + buyer + ", project=" + project + ", style="
-				+ style + ", unit=" + unit + ", category=" + category + ", location=" + location + ", stage=" + stage
-				+ ", inventory=" + inventory + ", booking=" + booking + ", purchase=" + purchase + "]";
+		return "MenuItemAuthorizations [InventoryItems=" + InventoryItems + ", buyer=" + buyer + ", project=" + project
+				+ ", style=" + style + ", unit=" + unit + ", category=" + category + ", location=" + location
+				+ ", stage=" + stage + ", inventory=" + inventory + ", booking=" + booking + ", purchase=" + purchase
+				+ ", summary=" + summary + "]";
 	}
 	
 	
