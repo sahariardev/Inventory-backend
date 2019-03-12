@@ -65,7 +65,7 @@ public class BookingController {
 		return mapping;
 
 	}
-	@GetMapping("{styleID}")
+	@GetMapping("/style/{styleID}")
 	public MappingJacksonValue allBookingsByStyle(@PathVariable("styleID") Long styleId) {
 
 		List<Booking> bookings = bookingService.getAllBookingsByStyle(styleId);
