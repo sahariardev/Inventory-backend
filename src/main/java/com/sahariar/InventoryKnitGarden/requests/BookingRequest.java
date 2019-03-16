@@ -12,6 +12,7 @@ public class BookingRequest {
 	private double priceperunit;
 	private Date date;
 	private String description;
+	private String extra;
 
 	public double getQuantity() {
 		return quantity;
@@ -51,6 +52,12 @@ public class BookingRequest {
 	}
 	
 	
+	public String getExtra() {
+		return extra;
+	}
+	public void setExtra(String extra) {
+		this.extra = extra;
+	}
 	public String getDescription() {
 		return description;
 	}

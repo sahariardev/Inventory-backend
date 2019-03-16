@@ -44,6 +44,7 @@ public class BookingService {
 		Style style=styleRepository.getOne(request.getStyle_id());
 		booking.setUnit(unit);
 		booking.setItem(item);
+		booking.setExtra(request.getExtra());
 		booking.setStyle(style);
 		booking.setCratedBy(username);
 		booking.setStatus("pending");
@@ -73,6 +74,7 @@ public class BookingService {
 		return bookingRepository.findAll();
 	}
 	public List<Booking> getAllBookingsByStyle(Long styleId)
+	
 	{
 		return bookingRepository.findByStyleId(styleId);
 	}
