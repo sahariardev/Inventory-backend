@@ -78,6 +78,18 @@ public class BookingService {
 	{
 		return bookingRepository.findByStyleId(styleId);
 	}
+	public boolean updateBookingsByStyleId(String status,Long id)
+	{
+		try
+		{
+			bookingRepository.updateBookingsStatusGruoupByStyle(status, id);	
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
 	
 	public boolean changeStatus(Long item_id,String status,String username)
 	{

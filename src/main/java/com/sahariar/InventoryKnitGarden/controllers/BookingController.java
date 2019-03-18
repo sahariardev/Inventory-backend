@@ -132,8 +132,21 @@ public class BookingController {
 		FilterProvider filters = new SimpleFilterProvider().addFilter("ItemFilter", itemFilter)
 				.addFilter("BookingFilter", bookingFilter).addFilter("ProjectFilter", projectFilter)
 				.addFilter("StyleFilter", styleFilter).addFilter("ClientFilter", clientFilter);
-		MappingJacksonValue mapping = new MappingJacksonValue(booking);
+		MappingJacksonValue mapping = new MappingJacksonValue(booking);	
 		mapping.setFilters(filters);
 		return mapping;
+	}
+	
+	@GetMapping("/update/status/{status}/{styleId}")
+	public ResponseEntity<String> updateStatus(@PathVariable String status, @PathVariable Long styleId)
+	{
+		if(bookingService.updateBookingsByStyleId(status, styleId))
+		{
+			return new ResponseEntity<>("Updated",HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<>("Failed",HttpStatus.BAD_REQUEST);
+		}
 	}
 }
