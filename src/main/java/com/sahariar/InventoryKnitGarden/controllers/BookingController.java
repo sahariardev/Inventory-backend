@@ -29,7 +29,7 @@ import com.sahariar.InventoryKnitGarden.services.UserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api/booking")
+@RequestMapping("/api/booking")
 public class BookingController {
 
 	@Autowired
@@ -140,6 +140,7 @@ public class BookingController {
 	@GetMapping("/update/status/{status}/{styleId}")
 	public ResponseEntity<String> updateStatus(@PathVariable String status, @PathVariable Long styleId)
 	{
+		
 		if(bookingService.updateBookingsByStyleId(status, styleId))
 		{
 			return new ResponseEntity<>("Updated",HttpStatus.OK);

@@ -80,6 +80,7 @@ public class BookingService {
 	}
 	public boolean updateBookingsByStyleId(String status,Long id)
 	{
+		
 		try
 		{
 			bookingRepository.updateBookingsStatusGruoupByStyle(status, id);	
@@ -87,6 +88,7 @@ public class BookingService {
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			return false;
 		}
 	}
