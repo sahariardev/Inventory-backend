@@ -21,6 +21,7 @@ public class PurchaseRequest {
 	private double discount;
 	private String description;
 	private long style_id;
+	private String code;
 	public String getReceiptNumber() {
 		return receiptNumber;
 	}
@@ -93,6 +94,21 @@ public class PurchaseRequest {
 	public void setStyle_id(long style_id) {
 		this.style_id = style_id;
 	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	@Override
+	public String toString() {
+		return "PurchaseRequest [receiptNumber=" + receiptNumber + ", sellerName=" + sellerName + ", sellerAddress="
+				+ sellerAddress + ", purchaseDate=" + purchaseDate + ", delivaryDate=" + delivaryDate + ", unit_id="
+				+ unit_id + ", quantity=" + quantity + ", item_id=" + item_id + ", price_per_unit=" + price_per_unit
+				+ ", discount=" + discount + ", description=" + description + ", style_id=" + style_id + ", code="
+				+ code + "]";
+	}
+	
 	
 	
 	

@@ -36,6 +36,7 @@ public class PurchaseService {
 	     purchase.setDelivaryDate(request.getDelivaryDate());
 	     purchase.setPurchaseDate(request.getPurchaseDate());
 	     purchase.setUnit(unit);
+	     purchase.setCode(request.getCode());
 	     purchase.setItem(item);
 	     purchase.setDescription(request.getDescription());
 	     purchase.setSellerName(request.getSellerName());

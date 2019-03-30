@@ -150,4 +150,19 @@ public class BookingController {
 			return new ResponseEntity<>("Failed",HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("update/final/price/{bookingId}/{price}/{date}")
+	public ResponseEntity<String> updateFinalPrice(@PathVariable("bookingId") Long id,@PathVariable String price,@PathVariable String date)
+	{
+		if(bookingService.updateFinalPrice(id, price,date))
+		{
+			return new ResponseEntity<>("Updated",HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<>("Failed",HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
 }

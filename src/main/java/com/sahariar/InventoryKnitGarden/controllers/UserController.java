@@ -96,7 +96,12 @@ public class UserController {
 	    		auth.setStyle(true);
 
 	    	}
-	    	
+	    	else if(role.getRole().equals("account_manager"))
+	    	{
+	    		auth.setSummary(true);
+	    		auth.setBooking(true);
+	    		
+	    	}	
 	    }
 	    return auth;
 	   

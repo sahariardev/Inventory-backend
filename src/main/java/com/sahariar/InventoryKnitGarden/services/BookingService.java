@@ -43,6 +43,7 @@ public class BookingService {
 		InventoryItem item=itemRepository.getOne(request.getItem_id());
 		Style style=styleRepository.getOne(request.getStyle_id());
 		booking.setUnit(unit);
+		booking.setCode("cyrrency:"+request.getCode());
 		booking.setItem(item);
 		booking.setExtra(request.getExtra());
 		booking.setStyle(style);
@@ -92,7 +93,22 @@ public class BookingService {
 			return false;
 		}
 	}
-	
+	public boolean updateFinalPrice(Long id,String price,String date)
+	{
+		String finalPriceWithDate=price+"#QQ#"+date;
+		try
+		{
+			Booking booking=bookingRepository.getOne(id);
+			String code=booking.getCode()+"#QQQ#"+"finalPrice:"+finalPriceWithDate;
+			booking.setCode(code);
+			bookingRepository.save(booking);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
 	public boolean changeStatus(Long item_id,String status,String username)
 	{
 		Booking booking=bookingRepository.getOne(item_id);

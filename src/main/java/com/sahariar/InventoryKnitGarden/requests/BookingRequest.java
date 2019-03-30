@@ -13,6 +13,7 @@ public class BookingRequest {
 	private Date date;
 	private String description;
 	private String extra;
+	private String code;
 
 	public double getQuantity() {
 		return quantity;
@@ -63,6 +64,13 @@ public class BookingRequest {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	@Override
 	public String toString() {
