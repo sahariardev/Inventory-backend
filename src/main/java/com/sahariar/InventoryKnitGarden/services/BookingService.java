@@ -99,6 +99,7 @@ public class BookingService {
 		try
 		{
 			Booking booking=bookingRepository.getOne(id);
+			
 			String code=booking.getCode()+"#QQQ#"+"finalPrice:"+finalPriceWithDate;
 			booking.setCode(code);
 			bookingRepository.save(booking);
