@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sahariar.InventoryKnitGarden.helper.FileUploadHelper;
 import com.sahariar.InventoryKnitGarden.services.InventoryItemService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/file")
 public class FileContoller {
