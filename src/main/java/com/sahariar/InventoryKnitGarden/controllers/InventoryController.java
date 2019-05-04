@@ -36,7 +36,7 @@ public class InventoryController {
 		
 		String username=pricipal.getName();
 		long id=inventroyService.createNewInventoryItem(request,username);
-		if(id!=-1L) return new ResponseEntity<String>("Created",HttpStatus.CREATED);
+		if(id!=-1L) return new ResponseEntity<String>(id+"",HttpStatus.CREATED);
 		return new ResponseEntity<String>("Bad Request",HttpStatus.BAD_REQUEST);	
 	}
 	

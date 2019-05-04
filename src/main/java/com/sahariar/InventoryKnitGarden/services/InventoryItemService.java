@@ -47,6 +47,20 @@ public class InventoryItemService {
 		return -1L;			
 	}
 	
+	public boolean saveItemIMage(long id, String image)
+	{
+		InventoryItem item=inventoryItemrepo.getOne(id);
+		if(item != null)
+		{
+			item.setImage(image);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	public long createNewInventoryItem(InventoryItemRequest request,String username)
 	{
 		InventoryItem item=new InventoryItem();
