@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sahariar.InventoryKnitGarden.helper.FileUploadHelper;
 import com.sahariar.InventoryKnitGarden.services.InventoryItemService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/file")
 public class FileContoller {
@@ -71,7 +72,7 @@ public class FileContoller {
 			public @ResponseBody byte[] getImageWithMediaType(@PathVariable ("imagename") String imagename ) throws IOException {
 			   
 		        
-		        File initialFile = new File(uploadpath+"imagename");
+		        File initialFile = new File(uploadpath+"/"+imagename);
 	            InputStream in= new FileInputStream(initialFile);  
 			    return helper.getByteArrayFromInputStream(in);
 			    

@@ -53,6 +53,7 @@ public class InventoryItemService {
 		if(item != null)
 		{
 			item.setImage(image);
+			inventoryItemrepo.save(item);
 			return true;
 		}
 		else
