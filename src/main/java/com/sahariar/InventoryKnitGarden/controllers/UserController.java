@@ -69,7 +69,7 @@ public class UserController {
 	    		auth.setInventory(true);
 	    		auth.setInventoryItems(true);
 	    		auth.setProject(true);
-	    		auth.setBuyer(true);
+	    		auth.setUnit(true);
 	    		auth.setStyle(true);
 
 	    	}
